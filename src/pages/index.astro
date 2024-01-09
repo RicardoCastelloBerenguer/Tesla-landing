@@ -1,90 +1,147 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card.astro";
+import Card from "../components/Logo.astro";
+import LandingHeader from "../components/LandingHeader.astro";
+import HeroSection from "../components/HeroSection.astro";
+import ChargeSection from "../components/ChargeSection.astro";
+import Section from "../components/Section.astro";
 ---
 
 <Layout title="Welcome to Astro">
-  <main>
-    <header
-      class="flex items-center justify-between px-6 py-5 fixed top-0 w-full z-40 text-white"
-    >
-      <div class="flex flex-grow basis-0">
-        <svg
-          class="h-6 w-32"
-          viewBox="0 0 342 35"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M0 .1a9.7 9.7 0 0 0 7 7h11l.5.1v27.6h6.8V7.3L26 7h11a9.8 9.8 0 0 0 7-7H0zm238.6 0h-6.8v34.8H263a9.7 9.7 0 0 0 6-6.8h-30.3V0zm-52.3 6.8c3.6-1 6.6-3.8 7.4-6.9l-38.1.1v20.6h31.1v7.2h-24.4a13.6
-		  13.6 0 0 0-8.7 7h39.9v-21h-31.2v-7h24zm116.2 28h6.7v-14h24.6v14h6.7v-21h-38zM85.3 7h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7zm0 
-		  13.8h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7zm0 14.1h26a9.6 9.6 0 0 0 7.1-7H78.3a9.6 9.6 0 0 0 7 7zM308.5 7h26a9.6 9.6 0 0 0 7-7h-40a9.6 9.6 0 0 0 7 7z"
-            fill="currentColor"
-          >
-          </path>
-        </svg>
-      </div>
-
-      <nav>
-        <ul
-          class="flex items-center justify-center text-sm [&>li>a]:font-semibold [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
-        >
-          <li><a href="#">Vehículos</a></li>
-          <li><a href="#">Energia</a></li>
-          <li><a href="#">Carga</a></li>
-          <li><a href="#">Descubrir</a></li>
-          <li><a href="#">Tienda</a></li>
-        </ul>
-      </nav>
-
-      <nav class="flex flex-grow justify-end basis-0">
-        <ul
-          class="flex basis-0 flex-gr items-center justify-center text-sm [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
-        >
-          <li><a href="#">Soporte</a></li>
-          <li><a href="#">Tienda</a></li>
-          <li><a href="#">Menú</a></li>
-        </ul>
-      </nav>
-    </header>
-
-    <section
-      class="h-screen w-screen bg-black text-center relative overflow-hidden text-white"
-    >
-      <div class="z-30 relative h-full flex flex-col">
-        <header class="">
-          <h2 class="pt-40 text-5xl font-semibold">Disfrute de Tesla</h2>
-
-          <a href="#" class="text-base underline"
-            >Concertar una prueba de conducción</a
-          >
-        </header>
-        <footer
-          class="z-30 relative flex flex-grow flex-nowrap justify-end items-center flex-col pb-24"
-        >
-          <div class="flex space-x-4">
-            <a
-              href="#"
-              class="rounded font-medium px-6 text-sm py-2.5 inline-block w-[270px] text-center bg-white text-black opacity-80 hover:opacity-100 transition-opacity"
-              >Entrega más rápida</a
-            >
-            <a
-              href="#"
-              class="rounded font-medium px-6 text-sm py-2.5 inline-block w-[270px] text-center bg-black text-white opacity-80 hover:opacity-100 transition-opacity"
-              >Contenido personalizado</a
-            >
-          </div>
-        </footer>
-      </div>
-
-      <div class="absolute top-0 bottom-0 z-10 h-full w-full">
+  <LandingHeader />
+  <main
+    class="snap-y snap-mandatory relative h-screen w-full overflow-auto overflow-x-hidden"
+  >
+    <div class="snap-center">
+      <Section
+        title="Model Y"
+        link_title="Concertar una prueba de conducción"
+        color="white"
+        header_nav_color="white"
+      >
         <video
+          slot="background"
           autoplay
           muted
           loop
           class="object-center object-cover h-full w-full"
           src="/video.mp4"></video>
-      </div>
-    </section>
+        <div slot="sectionFooter" class="flex space-x-4">
+          <a
+            href="#"
+            class="rounded font-medium px-6 text-sm py-2.5 inline-block w-[270px] text-center bg-white text-black opacity-80 hover:opacity-100 transition-opacity"
+            >Entrega más rápida</a
+          >
+          <a
+            href="#"
+            class="rounded font-medium px-6 text-sm py-2.5 inline-block w-[270px] text-center bg-black text-white opacity-80 hover:opacity-100 transition-opacity"
+            >Contenido personalizado</a
+          >
+        </div>
+      </Section>
+    </div>
+    <div class="snap-center">
+      <Section
+        title="Model 3"
+        link_title=""
+        color="black"
+        header_nav_color="black"
+      >
+        <img
+          slot="background"
+          class="object-center object-cover h-full w-full"
+          src="/model_3.avif"
+          alt="Model 3"
+        />
+        <div slot="sectionFooter" class="flex space-x-4">
+          <a
+            href="#"
+            class="rounded font-medium px-6 text-sm py-2.5 inline-block w-[270px] text-center bg-white text-black opacity-80 hover:opacity-100 transition-opacity"
+            >Pedido personalizado</a
+          >
+          <a
+            href="#"
+            class="rounded font-medium px-6 text-sm py-2.5 inline-block w-[270px] text-center bg-black text-white opacity-80 hover:opacity-100 transition-opacity"
+            >Prueba de conducción</a
+          >
+        </div>
+      </Section>
+    </div>
+    <div class="snap-center">
+      <Section
+        title="Model S"
+        link_title="Explorar inventario"
+        color="black"
+        header_nav_color="black"
+      >
+        <img
+          slot="background"
+          class="object-center object-cover h-full w-full"
+          src="/model_s.avif"
+          alt="Model S"
+        />
+        <div slot="sectionFooter" class="flex space-x-4">
+          <a
+            href="#"
+            class="rounded font-medium px-6 text-sm py-2.5 inline-block w-[270px] text-center bg-white text-black opacity-80 hover:opacity-100 transition-opacity"
+            >Pedido personalizado</a
+          >
+          <a
+            href="#"
+            class="rounded font-medium px-6 text-sm py-2.5 inline-block w-[270px] text-center bg-black text-white opacity-80 hover:opacity-100 transition-opacity"
+            >Prueba de conducción</a
+          >
+        </div>
+      </Section>
+    </div>
+    <div class="snap-center">
+      <Section
+        title="Disfrute de Tesla"
+        link_title="Programe una prueba de conducción hoy mismo"
+        color="white"
+        header_nav_color="white"
+      >
+        <video
+          slot="background"
+          autoplay
+          muted
+          loop
+          class="object-center object-cover h-full w-full"
+          src="/Homepage-Demo-Drive.webm"
+        >
+        </video>
+        <div slot="sectionFooter" class="flex space-x-4">
+          <a
+            href="#"
+            class="rounded font-medium px-7 text-sm py-2 inline-block w-[270px] text-center border-4 duration-300 border-white hover:bg-white hover:text-black text-white opacity-80 hover:opacity-100 transition-all"
+            >Prueba de conducción</a
+          >
+        </div>
+      </Section>
+    </div>
+    <div class="snap-center">
+      <Section
+        title="Accesorios"
+        link_title=""
+        color="black"
+        header_nav_color="black"
+      >
+        <img
+          slot="background"
+          class="object-center object-cover h-full w-full"
+          src="/accesories.avif"
+          alt="Accesories"
+        />
+        <div slot="sectionFooter" class="flex space-x-4">
+          <a
+            href="#"
+            class="rounded font-medium px-6 text-sm py-2.5 inline-block w-[270px] text-center bg-white text-black opacity-80 hover:opacity-100 transition-opacity"
+            >Comprar ahora</a
+          >
+        </div>
+      </Section>
+    </div>
   </main>
 </Layout>
+
 <style></style>

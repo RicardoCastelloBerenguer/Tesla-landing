@@ -1,0 +1,88 @@
+---
+import Logo from "./Logo.astro";
+---
+
+<header
+  id="landing-header"
+  class="flex items-center justify-between px-6 py-5 fixed top-0 w-full z-40 text-white"
+>
+  <div class="flex flex-grow basis-0">
+    <Logo />
+  </div>
+
+  <nav>
+    <ul
+      class="flex items-center justify-center text-sm [&>li>a]:font-semibold [&>li>a]:inline-block [&>li>a]:transition-colors [&>li>a]:px-4 [&>li>a]:py-2"
+    >
+      <li><a href="#">Vehículos</a></li>
+      <li><a href="#">Energia</a></li>
+      <li><a href="#">Carga</a></li>
+      <li><a href="#">Descubrir</a></li>
+      <li><a href="#">Tienda</a></li>
+    </ul>
+  </nav>
+
+  <nav class="flex flex-grow justify-end basis-0">
+    <ul
+      class="flex basis-0 flex-gr items-center justify-center text-sm [&>li>a]:font-semibold [&>li>a]:transition-colors [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
+    >
+      <li><a href="#">Soporte</a></li>
+      <li><a href="#">Tienda</a></li>
+      <li><a href="#">Menú</a></li>
+    </ul>
+  </nav>
+
+  <div
+    id="menu-backbox"
+    class="absolute top-0 left-0 bg-black/5 backdrop-blur-lg rounded translate-x-[var(--left)] translate-y-[var(--top)] w-[var(--width)] h-[var(--height)] transition-all duration-300 ease-in-out opacity-0 -z-10"
+  >
+  </div>
+</header>
+
+<script>
+  const $header = document.querySelector("#landing-header") as HTMLElement;
+
+  const observerOptions = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.9,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const { isIntersecting } = entry;
+      if (isIntersecting) {
+        const color = entry.target.getAttribute("data-header-color");
+
+        $header.style.color = color;
+      }
+    });
+  }, observerOptions);
+
+  const $sections = document.querySelectorAll(".landing-section");
+  $sections.forEach((section) => observer.observe(section));
+</script>
+
+<script>
+  import { isRenderTemplateResult } from "astro/runtime/server/render/astro/render-template.js";
+
+  const listItems = document.querySelectorAll("#landing-header nav ul li");
+
+  const menuBackBox = document.querySelector("#menu-backbox") as HTMLElement;
+
+  listItems.forEach((listItem) => {
+    listItem.addEventListener("mouseenter", () => {
+      const { left, top, width, height } = listItem.getBoundingClientRect();
+
+      menuBackBox.style.setProperty("--left", `${left}px`);
+      menuBackBox.style.setProperty("--top", `${top}px`);
+      menuBackBox.style.setProperty("--width", `${width}px`);
+      menuBackBox.style.setProperty("--height", `${height}px`);
+      menuBackBox.style.opacity = "1";
+    });
+
+    listItem.addEventListener("mouseleave", (target) => {
+      menuBackBox.style.opacity = "0";
+    });
+  });
+</script>
